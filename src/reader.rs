@@ -37,7 +37,13 @@ struct App {
 impl App {
     async fn new(chapters: Vec<Url>) -> Result<Self, Box<dyn Error>> {
         // Detect graphics capabilities before entering TUI mode
-        let picker = Picker::from_query_stdio()?;
+        // BERSERK_HALFBLOCKS forces unicode halfblocks, for terminals that
+        // advertise graphics support but can't display it (e.g. VHS recordings)
+        let picker = if std::env::var_os("BERSERK_HALFBLOCKS").is_some() {
+            Picker::halfblocks()
+        } else {
+            Picker::from_query_stdio()?
+        };
 
         let mut chapter_list_state = ListState::default();
 

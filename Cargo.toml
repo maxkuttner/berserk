@@ -1,0 +1,15 @@
+[package]
+name = "berserk"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+reqwest = "0.13.5"
+scraper = "0.27.0"
+tokio = { version = "1.53.3", features = ["full"] }
+url = "2.5.8"
+log = "0.4.34"
+ratatui = "0.30.2"
+crossterm = "0.29.0"
+ratatui-image = "11.1.0"
+image = "0.25.10"
